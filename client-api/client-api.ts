@@ -199,6 +199,23 @@ interface InteropPlatform {
      */
     onPeerDisconnected(callback: (peer: InteropPeerDescriptor) => void): Subscription;
   }
+
+  /**
+   * Invocation result object returned after a successful method invocation.
+   */
+  interface InvokeResult {
+    method: Method;                     // Identifies the method that was executed as well as the peer that registered/executed it.
+    arguments?: any;                    // An object containing the arguments used for the invocation.  
+    result?: any;                       // Result of the method invocation.
+  }
+
+  /**
+   * An InteropClient's stream subscription.
+   */
+  interface StreamSubscription extends Subscription {
+    arguments?: object;                 // An object containing the arguments used for the subscription.
+    stream: Stream;                     // Reference to the stream that the subscription is to.
+  }  
   
   /**
    * A container for the 'Server' functionality.
@@ -283,12 +300,12 @@ interface InteropPlatform {
   
   interface MethodHandler {
     /**
-     * @param  {object}              args              An object containing the arguments used for the invocation.
+     * @param  {any}              args                  An object containing the arguments used for the invocation.
      * @param  {InteropPeerDescriptor} caller          A reference to the peer that invoked the method.
      * @return {Promise<any>}                          Result of the method invocation, that is then sent to the client wrapped inside of
      *                                                 an InvokeResult.
      */
-    onInvoke(args: object, caller: InteropPeerDescriptor): Promise<any>;
+    onInvoke(args: any, caller: InteropPeerDescriptor): Promise<any>;
   }
   
   /**
@@ -302,11 +319,11 @@ interface InteropPlatform {
     /**
      * @param  {StreamObserver} observer               Observer object subscribing to the stream.
      * @param  {InteropPeerDescriptor} caller          A reference to the peer that invoked the method.
-     * @param  {object}              args              An object containing the arguments used for the subscription.
+     * @param  {any}              args                 An object containing the arguments used for the subscription.
      * @return {Promise<Subscription>}                 Subscription instance. Its unsubscribe method will be called 
      *                                                 when the caller closed subscription or disconnected.
      */
-    onSubscriptionRequested(observer: StreamObserver, caller: InteropPeerDescriptor, args?: object): Promise<Subscription>;
+    onSubscriptionRequested(observer: StreamObserver, caller: InteropPeerDescriptor, args?: any): Promise<Subscription>;
   }
   
   /**
@@ -314,26 +331,60 @@ interface InteropPlatform {
    */
   interface StreamImplementation extends StreamDefinition, StreamHandler {
   }
-  
+    
   /**
-   * Invocation result object returned after a successful method invocation.
+   * Defines observer of a stream.
+   * 
+   * Client (stream consumer) provides implementation of this interface to listen the called stream.
+   * 
+   * Server (stream producer) receives an object implementing this interface and calls its methods 
+   * to push new items or to complete the stream.
    */
-  interface InvokeResult {
-    method: Method;                     // Identifies the method that was executed as well as the peer that registered/executed it.
-    arguments?: object;                 // An object containing the arguments used for the invocation.  
-    result?: object;                    // Result of the method invocation.
-  }
-  
   interface StreamObserver {
-    next?: (data: object) => Promise<void>;
-    completed?: () => Promise<void>;
-    error?: (error: Error) => Promise<void>;
-  }
-  
-  /**
-   * An InteropClient's stream subscription.
-   */
-  interface StreamSubscription extends Subscription {
-    arguments?: object;                 // An object containing the arguments used for the subscription.
-    stream: Stream;                     // Reference to the stream that the subscription is to.
+
+    /** 
+     * On client side this method is called for each new received item.
+     * 
+     * On server side calling this method pushes new item to the stream.
+     * 
+     * @param  {any} data                   On client side: received stream item.
+     *                                      On server side: item to push into the stream.
+     * 
+     * @return {Promise<void>}              Client should return promise which will be resolved as soon as item is handled.
+     *                                      Server receives promise which will be resolved as soon as interop platform 
+     *                                      accepted the new item (doesn't mean it was received by subscriber!).
+     *                                      
+    */
+    next: (data: any) => Promise<void>;
+
+    /** 
+     * On client side this method is called when stream is completed.
+     * 
+     * On server side calling this method completes the stream. 
+     * Observer won't accept any further items after calling this method.
+     * 
+     * @return {Promise<void>}              Client should return promise which will be resolved 
+     *                                      as soon as completion notification is handled.
+     *                                      Server receives promise which will be resolved as soon as all the items 
+     *                                      are sent to the caller and stream completed.
+     *                                      
+    */
+    completed: () => Promise<void>;
+
+    /** 
+     * On client side this method is called when stream is completed because of an error.
+     * 
+     * On server side calling this method completes the stream with an error. 
+     * Stream won't accept any further items after calling this method.
+     * 
+     * @param  {Error} error                On client side: object representing error.
+     *                                      On server side: error to send.
+     * 
+     * @return {Promise<void>}              Client should return promise which will be resolved 
+     *                                      as soon as error notification is handled.
+     *                                      Server receives promise which will be resolved as soon as all the items 
+     *                                      are sent to the caller and stream completed.
+     *                                      
+    */
+    error: (error: Error) => Promise<void>;
   }
