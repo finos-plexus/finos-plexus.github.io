@@ -37,9 +37,12 @@ interface InteropPlatform {
      * @return {boolean}                          Boolean indicating whether the given feature is supported.
      */
     isFeatureSupported(feature: InteropFeature): boolean;
-  
+
     /**
      * @param  {string}                       applicationName       Name of the application participating in interop.
+     * @param  {string}                       apiMetadata           Publishes metadata which describes API implemented by the app
+     *                                                              in proto3 syntax (https://developers.google.com/protocol-buffers/docs/proto3)
+     *                                                              to help dev tools to build swagger-like API explorers.     
      * @param  {MethodImplementation[]}       methods               Methods registered on peer creation.
      *                                                              The InteropPeer can later register more methods.
      * @param  {StreamImplementation[]}       streams               Streams registered on peer creation.
@@ -51,6 +54,7 @@ interface InteropPlatform {
      */
     connect(
       applicationName: string,
+      apiMetadata?: string,
       methods?: MethodImplementation[],
       streams?: StreamImplementation[]
     ): Promise<InteropPeer>;
@@ -235,6 +239,13 @@ interface InteropPlatform {
      * @return {Promise<RegisteredStream>}                 RegisteredStream object containing the stream's details and function to unregisted the stream implementation.
      */
     registerStream(streamImplementation: StreamImplementation): Promise<RegisteredStream>;
+
+    /**
+     * Publishes metadata which describes API implemented by the app
+     * in proto3 syntax (https://developers.google.com/protocol-buffers/docs/proto3)
+     * to help dev tools to build swagger-like API explorers.
+     */
+    publishApiMetadata(apiMetadata: string): Promise<void>;
   }
   
   /**
@@ -244,18 +255,30 @@ interface InteropPlatform {
      /**
      * @return {Promise<void>} Promise that resolves when the subscription successfully closed.
      */
-    unsubscribe: () => Promise<void>;
+    unsubscribe(): Promise<void>;
   }
   
   /**
    * Reference to a connected instance of a peer or launchable application.
    */
   interface InteropPeerDescriptor {
-    isConnected: boolean;                 // Shows the current connection status of the peer.
-    applicationName: string;              // The name of the application.
-    id: string;                           /* Platform specific id.
-                                           Unique for an InteropPeerInstance connected to the platform. Null for launchable app.
-                                           Some platforms may change the id following a disconnect/reconnect. */
+    isConnected: boolean;        // Shows the current connection status of the peer.
+    applicationName: string;     // The name of the application.
+    id: string;                  /* Platform specific id.
+                                    Unique for an InteropPeerInstance connected to the platform. Null for launchable app.
+                                    Some platforms may change the id following a disconnect/reconnect. */
+
+    /**
+     * Returns metadata describing API implemented by the application
+     * in proto3 syntax (https://developers.google.com/protocol-buffers/docs/proto3).
+     * Can be used by dev tools to implement swagger-like API explorers.
+     */
+    getApiMetadata(): Promise<string>;
+
+    /**
+     * Notifies when application changed the published API metadata.
+     */
+    onApiMetadataChanged(callback: (metadata: string) => void);
   }
   
   /**
