@@ -2,7 +2,7 @@ const { spawn } = require('child_process');
 const opn = require('opn');
 
 const samplePricePublisherProcess = spawn('node', ['./sample-price-publisher/index.js']);
-const clientServerProcess = spawn('node', ['./node_modules/.bin/http-server', './', '-p 8081']);
+const clientServerProcess = spawn('node', ['./node_modules/http-server/bin/http-server/', './', '-p 8081']);
 
 const redirectOutput = (childProcess, name) => {
   childProcess.stdout.on('data', (data) => {
