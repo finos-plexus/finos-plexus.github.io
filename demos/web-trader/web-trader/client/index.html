@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="./style.css" />
+</head>
+
+<body>
+  <h3><img id="connection" src="./assets/disconnected.png" alt="Connection">Web Trader Client (<span id="platform">Not connected</span>)</h3>
+  <h2>Current balance: <span id="balance"></span></h2>
+  <div id="instrumentSubscribe">
+    <label for="instrument">Subscribe for instrument</label>
+    <select id="instrument" name="instrument">
+    </select>
+    <input id="submit" type="submit" value="Submit">
+  </div>
+  <div id="orders">
+    <table>
+      <caption>Active Orders</caption>
+      <thead>
+        <tr>
+          <th class="sort" data-sort="instrument">Instrument</th>
+          <th class="sort" data-sort="position">Position</th>
+          <th class="sort" data-sort="price">Price</th>
+          <th class="sort" data-sort="amount">Amount</th>
+          <th class="sort" data-sort="value">Value</th>
+          <th class="sort" data-sort="pl">P/L</th>
+          <th>
+            <input type="text" class="search" placeholder="Search" />
+          </th>
+        </tr>
+      </thead>
+      <tbody class="list">
+      </tbody>
+    </table>
+  </div>
+  <script type="text/javascript" src="../lib/jquery.min.js"></script>
+  <script type="text/javascript" src="../lib/list.min.js"></script>
+  <script type="text/javascript" src="../lib/canvasjs.min.js"></script>
+  <script type="text/javascript" src="../lib/glue-interop-api-impl.min.js"></script>
+  <script type="text/javascript" src="../../platformFactory.js"></script>
+  <script type="text/javascript" src="./appLogic.js"></script>
+  <script type="text/javascript" src="./index.js"></script>
+</body>
+
+</html>

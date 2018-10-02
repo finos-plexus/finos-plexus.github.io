@@ -1,0 +1,82 @@
+body {
+  font-family: Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif;
+}
+
+#connection {
+  height: 2%;
+  width: 2%;
+}
+
+#instrumentSubscribe {
+  display: none;
+}
+
+table {
+  margin: 0px auto;
+  margin-bottom: 100px;
+}
+
+th,
+td {
+  width: 150px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.positionButton {
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 12px;
+  width: 11%;
+}
+
+.positionButton:focus {
+  outline: none;
+}
+
+.positionButton:active {
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.amountInput {
+  margin-top: 265px;
+  margin-left: 7%;
+  padding: 0.5% 2%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 10%;
+}
+
+.amountInput:first-of-type {
+  margin-top: 145px;
+}
+
+.buttonContainer {
+  margin-left: 3%;
+}
+
+.buyButton {
+  background-color: #4CAF50;
+}
+
+.buyButton:active {
+  background-color: #3e8e41;
+}
+
+.sellButton {
+  background-color: #d12e2e;
+}
+
+.sellButton:active {
+  background-color: #af2a2a;
+}
