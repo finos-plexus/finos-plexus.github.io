@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="./style.css" />
+</head>
+
+<body>
+  <h3><img id="connection" src="./assets/disconnected.png" alt="Connection">Web Trader Server (<span id="platform">Not connected</span>)</h3>
+  <div id="orders">
+    <table>
+      <caption>Active Orders</caption>
+      <thead>
+        <tr>
+          <th class="sort" data-sort="clientId">Client Id</th>
+          <th class="sort" data-sort="instrument">Instrument</th>
+          <th class="sort" data-sort="position">Position</th>
+          <th class="sort" data-sort="price">Price</th>
+          <th class="sort" data-sort="amount">Amount</th>
+          <th class="sort" data-sort="value">Value</th>
+          <th>
+            <input type="text" class="search" placeholder="Search" />
+          </th>
+        </tr>
+      </thead>
+      <tbody class="list">
+      </tbody>
+    </table>
+  </div>
+  <script type="text/javascript" src="../lib/jquery.min.js"></script>
+  <script type="text/javascript" src="../lib/list.min.js"></script>
+  <script type="text/javascript" src="../lib/glue-interop-api-impl.min.js"></script>
+  <script type="text/javascript" src="../../platformFactory.js"></script>
+  <script type="text/javascript" src="./appLogic.js"></script>
+  <script type="text/javascript" src="./index.js"></script>
+</body>
+
+</html>

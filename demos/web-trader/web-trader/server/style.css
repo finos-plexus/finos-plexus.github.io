@@ -1,0 +1,17 @@
+body {
+  font-family: Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif;
+}
+
+#connection {
+  height: 2%;
+  width: 2%;
+}
+
+th,
+td {
+  width: 150px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}

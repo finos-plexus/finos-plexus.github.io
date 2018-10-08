@@ -304,6 +304,7 @@ interface InteropPlatform {
      */
     displayName?: string;                             // User friendly name to present the method to a user in a UI.
     tooltip?: string;                                 // Tooltip to describe the method.  
+    intent?: MethodIntent[];            // MethodIntents that the Method satisfies, typically there will be 0 or 1.
   }
   
   /**
@@ -411,3 +412,16 @@ interface InteropPlatform {
     */
     error: (error: Error) => Promise<void>;
   }
+
+/**
+ * Typically an application that implements an Intent does it by publishing an Interop method to implement the Intent.
+ * This interface provides a way that Method publishers can record the Intent capabilities of each method.
+ * This is in addition to the Intent publishing capability allowed in application definitions such as the
+ * FINOS FDC3 Application definition.
+ */
+interface MethodIntent {
+  name: string;                       // Required. The name of the Intent.
+  contexts?: string;                  /* Optional 'context' which define when this method is able to implement the Intent.
+                                         This should be thought of as 'restrictions' on the scope of a method.
+                                         For example there might be a restriction to say the Intent can only be delivered for exchange traded equities. */
+}
