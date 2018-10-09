@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "validate-plexus-config": "plexus validate -b plexus-config",
+    "gen-plexus-config": "plexus gen-json-meta -b plexus-config -o plexus-config/interop.json -e '.*options.*'"
+  },
   "author": "",
   "license": "ISC",
   "devDependencies": {
