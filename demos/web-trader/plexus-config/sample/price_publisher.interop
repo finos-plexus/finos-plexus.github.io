@@ -1,0 +1,9 @@
+
+package sample;
+import "sample/custom_options.proto";
+import "sample/services.proto";
+
+application PricePublisher {
+    option (alias) = "sample-price-publisher";
+    consumes PriceService { PriceStream; }
+}

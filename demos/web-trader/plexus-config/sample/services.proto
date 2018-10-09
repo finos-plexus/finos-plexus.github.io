@@ -1,0 +1,17 @@
+
+syntax = "proto3";
+
+package sample;
+
+message Instrument {
+    string value = 1;
+}
+
+message Price {
+    double buy = 1;
+    double sell = 2; 
+}
+
+service PriceService {
+    rpc PriceStream (Instrument) returns (stream Price);
+}

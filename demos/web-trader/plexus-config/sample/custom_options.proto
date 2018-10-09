@@ -1,0 +1,13 @@
+
+syntax = "proto2";
+
+package sample;
+
+import "interop/descriptor.proto";
+
+/**
+* Extend core metadata with custom 'alias' option to support short app names
+*/
+extend .interop.ApplicationOptions {
+	optional string alias = 1500;
+}
