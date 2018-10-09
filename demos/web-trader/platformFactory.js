@@ -16,10 +16,9 @@ const platformConfig = {
 };
 
 if (typeof window !== 'undefined') {
-  window.platformFactory = () => InteropPlatform(platformConfig);
+  window.platformFactory = async () => InteropPlatform(platformConfig);
 } else if (typeof global !== 'undefined') {
   const InteropPlatform = require('glue-interop-api-impl');
-
   // Glue42 platform factory function.
-  module.exports = () => InteropPlatform(platformConfig);
+  module.exports = async () => InteropPlatform(platformConfig);
 }
