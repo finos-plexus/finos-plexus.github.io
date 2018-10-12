@@ -1,0 +1,10 @@
+
+package sample;
+import "sample/custom_options.proto";
+import "sample/services.proto";
+
+application WebTraderClient {
+    option (app_alias) = "web-trader-client";
+    consumes PriceService { PriceStream; } 
+    consumes OrderService { MakeMarketOrder; CloseMarketOrder; }
+}

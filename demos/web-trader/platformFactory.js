@@ -15,8 +15,18 @@ const platformConfig = {
   auth: authRequest,
 };
 
+const plexusPlatformConfig = {
+  webSocketUrl: `ws://127.0.0.1:61851`
+};
+
 if (typeof window !== 'undefined') {
-  window.platformFactory = async () => InteropPlatform(platformConfig);
+  if (window.PlexusPlatformFactory) {
+    window.platformFactory = async () => new window.PlexusPlatformFactory
+      .InteropPlatformFactory()
+      .createPlatform(plexusPlatformConfig);
+  } else {
+    window.platformFactory = async () => InteropPlatform(platformConfig);
+  }
 } else if (typeof global !== 'undefined') {
   const InteropPlatform = require('glue-interop-api-impl');
   // Glue42 platform factory function.

@@ -4,6 +4,8 @@ import "sample/custom_options.proto";
 import "sample/services.proto";
 
 application PricePublisher {
-    option (alias) = "sample-price-publisher";
-    consumes PriceService { PriceStream; }
+    option (app_alias) = "sample-price-publisher";
+    provides PriceService { 
+        PriceStream [(provided_method_alias) = "price-stream" ]; 
+    }
 }

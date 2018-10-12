@@ -1,6 +1,209 @@
 {
 	"messages": {
 	  "nested": {
+	    "interop": {
+	      "nested": {
+	        "ApplicationOptions": {
+	          "fields": {
+	            "title": {
+	              "type": "string",
+	              "id": 1
+	            },
+	            "launchOnCall": {
+	              "type": "ApplicationLaunchOnCallMode",
+	              "id": 2
+	            }
+	          },
+	          "extensions": [
+	            [
+	              1000,
+	              536870911
+	            ]
+	          ]
+	        },
+	        "ProvidedServiceOptions": {
+	          "fields": {
+	            "title": {
+	              "type": "string",
+	              "id": 1
+	            },
+	            "launchOnCall": {
+	              "type": "ApplicationLaunchOnCallMode",
+	              "id": 2
+	            }
+	          },
+	          "extensions": [
+	            [
+	              1000,
+	              536870911
+	            ]
+	          ]
+	        },
+	        "ConsumedServiceOptions": {
+	          "fields": {},
+	          "extensions": [
+	            [
+	              1000,
+	              536870911
+	            ]
+	          ]
+	        },
+	        "ProvidedMethodOptions": {
+	          "fields": {
+	            "title": {
+	              "type": "string",
+	              "id": 1
+	            },
+	            "launchOnCall": {
+	              "type": "ApplicationLaunchOnCallMode",
+	              "id": 2
+	            },
+	            "timeoutMs": {
+	              "type": "uint32",
+	              "id": 3
+	            }
+	          },
+	          "extensions": [
+	            [
+	              1000,
+	              536870911
+	            ]
+	          ]
+	        },
+	        "ConsumedMethodOptions": {
+	          "fields": {},
+	          "extensions": [
+	            [
+	              1000,
+	              536870911
+	            ]
+	          ]
+	        },
+	        "ApplicationLaunchOnCallMode": {
+	          "options": {
+	            "allow_alias": true
+	          },
+	          "values": {
+	            "IF_NOT_LAUNCHED": 0,
+	            "DEFAULT": 0,
+	            "ALWAYS": 1,
+	            "ENABLED": 1,
+	            "NEVER": 2,
+	            "DISABLED": 2
+	          }
+	        }
+	      }
+	    },
+	    "sample": {
+	      "options": {
+	        "csharp_namespace": "plexus"
+	      },
+	      "nested": {
+	        "Instrument": {
+	          "options": {
+	            "(.interop.message_id)": "sample.Instrument"
+	          },
+	          "fields": {
+	            "instrument": {
+	              "type": "string",
+	              "id": 1
+	            }
+	          }
+	        },
+	        "Price": {
+	          "options": {
+	            "(.interop.message_id)": "sample.Price"
+	          },
+	          "fields": {
+	            "buy": {
+	              "type": "double",
+	              "id": 1
+	            },
+	            "sell": {
+	              "type": "double",
+	              "id": 2
+	            }
+	          }
+	        },
+	        "PriceService": {
+	          "options": {
+	            "(.interop.service_id)": "sample.PriceService"
+	          },
+	          "methods": {
+	            "PriceStream": {
+	              "requestType": "Instrument",
+	              "responseType": "Price",
+	              "responseStream": true
+	            }
+	          }
+	        },
+	        "OrderReference": {
+	          "options": {
+	            "(.interop.message_id)": "sample.OrderReference"
+	          },
+	          "fields": {
+	            "id": {
+	              "type": "string",
+	              "id": 1
+	            },
+	            "clientId": {
+	              "type": "string",
+	              "id": 2
+	            }
+	          }
+	        },
+	        "Order": {
+	          "options": {
+	            "(.interop.message_id)": "sample.Order"
+	          },
+	          "fields": {
+	            "id": {
+	              "type": "string",
+	              "id": 1
+	            },
+	            "clientId": {
+	              "type": "string",
+	              "id": 2
+	            },
+	            "instrument": {
+	              "type": "string",
+	              "id": 3
+	            },
+	            "position": {
+	              "type": "string",
+	              "id": 4
+	            },
+	            "price": {
+	              "type": "double",
+	              "id": 5
+	            },
+	            "amount": {
+	              "type": "double",
+	              "id": 6
+	            },
+	            "value": {
+	              "type": "double",
+	              "id": 7
+	            }
+	          }
+	        },
+	        "OrderService": {
+	          "options": {
+	            "(.interop.service_id)": "sample.OrderService"
+	          },
+	          "methods": {
+	            "CloseMarketOrder": {
+	              "requestType": "OrderReference",
+	              "responseType": "google.protobuf.Empty"
+	            },
+	            "MakeMarketOrder": {
+	              "requestType": "Order",
+	              "responseType": "google.protobuf.Empty"
+	            }
+	          }
+	        }
+	      }
+	    },
 	    "google": {
 	      "nested": {
 	        "protobuf": {
@@ -860,144 +1063,9 @@
 	                  }
 	                }
 	              }
-	            }
-	          }
-	        }
-	      }
-	    },
-	    "interop": {
-	      "nested": {
-	        "ApplicationOptions": {
-	          "fields": {
-	            "title": {
-	              "type": "string",
-	              "id": 1
 	            },
-	            "launchOnCall": {
-	              "type": "ApplicationLaunchOnCallMode",
-	              "id": 2
-	            }
-	          },
-	          "extensions": [
-	            [
-	              1000,
-	              536870911
-	            ]
-	          ]
-	        },
-	        "ProvidedServiceOptions": {
-	          "fields": {
-	            "title": {
-	              "type": "string",
-	              "id": 1
-	            },
-	            "launchOnCall": {
-	              "type": "ApplicationLaunchOnCallMode",
-	              "id": 2
-	            }
-	          },
-	          "extensions": [
-	            [
-	              1000,
-	              536870911
-	            ]
-	          ]
-	        },
-	        "ConsumedServiceOptions": {
-	          "fields": {},
-	          "extensions": [
-	            [
-	              1000,
-	              536870911
-	            ]
-	          ]
-	        },
-	        "ProvidedMethodOptions": {
-	          "fields": {
-	            "title": {
-	              "type": "string",
-	              "id": 1
-	            },
-	            "launchOnCall": {
-	              "type": "ApplicationLaunchOnCallMode",
-	              "id": 2
-	            },
-	            "timeoutMs": {
-	              "type": "uint32",
-	              "id": 3
-	            }
-	          },
-	          "extensions": [
-	            [
-	              1000,
-	              536870911
-	            ]
-	          ]
-	        },
-	        "ConsumedMethodOptions": {
-	          "fields": {},
-	          "extensions": [
-	            [
-	              1000,
-	              536870911
-	            ]
-	          ]
-	        },
-	        "ApplicationLaunchOnCallMode": {
-	          "options": {
-	            "allow_alias": true
-	          },
-	          "values": {
-	            "IF_NOT_LAUNCHED": 0,
-	            "DEFAULT": 0,
-	            "ALWAYS": 1,
-	            "ENABLED": 1,
-	            "NEVER": 2,
-	            "DISABLED": 2
-	          }
-	        }
-	      }
-	    },
-	    "sample": {
-	      "options": {
-	        "csharp_namespace": "plexus"
-	      },
-	      "nested": {
-	        "Instrument": {
-	          "options": {
-	            "(.interop.message_id)": "sample.Instrument"
-	          },
-	          "fields": {
-	            "instrument": {
-	              "type": "string",
-	              "id": 1
-	            }
-	          }
-	        },
-	        "Price": {
-	          "options": {
-	            "(.interop.message_id)": "sample.Price"
-	          },
-	          "fields": {
-	            "buy": {
-	              "type": "double",
-	              "id": 1
-	            },
-	            "sell": {
-	              "type": "double",
-	              "id": 2
-	            }
-	          }
-	        },
-	        "PriceService": {
-	          "options": {
-	            "(.interop.service_id)": "sample.PriceService"
-	          },
-	          "methods": {
-	            "PriceStream": {
-	              "requestType": "Instrument",
-	              "responseType": "Price",
-	              "responseStream": true
+	            "Empty": {
+	              "fields": {}
 	            }
 	          }
 	        }
@@ -1023,6 +1091,29 @@
 					"value": "sample.PriceService"
 				}
 			]
+		},
+		{
+			"id": "sample.OrderService",
+			"methods": [
+				{
+					"name": "CloseMarketOrder",
+					"request": "sample.OrderReference",
+					"response": "google.protobuf.Empty",
+					"type": "Unary"
+				},
+				{
+					"name": "MakeMarketOrder",
+					"request": "sample.Order",
+					"response": "google.protobuf.Empty",
+					"type": "Unary"
+				}
+			],
+			"options": [
+				{
+					"id": "interop.service_id",
+					"value": "sample.OrderService"
+				}
+			]
 		}
 	],
 	"applications": [
@@ -1030,8 +1121,34 @@
 			"id": "sample.PricePublisher",
 			"options": [
 				{
-					"id": "sample.alias",
+					"id": "sample.app_alias",
 					"value": "sample-price-publisher"
+				}
+			]
+			,
+			"provides": [
+				{
+					"service": "sample.PriceService",
+					"methods": [
+						{
+							"name": "PriceStream",
+							"options": [
+								{
+									"id": "sample.provided_method_alias",
+									"value": "price-stream"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "sample.WebTraderClient",
+			"options": [
+				{
+					"id": "sample.app_alias",
+					"value": "web-trader-client"
 				}
 			]
 			,
@@ -1041,6 +1158,52 @@
 					"methods": [
 						{
 							"name": "PriceStream"
+						}
+					]
+				},
+				{
+					"service": "sample.OrderService",
+					"methods": [
+						{
+							"name": "MakeMarketOrder"
+						},
+						{
+							"name": "CloseMarketOrder"
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "sample.WebTraderServer",
+			"options": [
+				{
+					"id": "sample.app_alias",
+					"value": "web-trader-server"
+				}
+			]
+			,
+			"provides": [
+				{
+					"service": "sample.OrderService",
+					"methods": [
+						{
+							"name": "CloseMarketOrder",
+							"options": [
+								{
+									"id": "sample.provided_method_alias",
+									"value": "close-market-order"
+								}
+							]
+						},
+						{
+							"name": "MakeMarketOrder",
+							"options": [
+								{
+									"id": "sample.provided_method_alias",
+									"value": "make-market-order"
+								}
+							]
 						}
 					]
 				}

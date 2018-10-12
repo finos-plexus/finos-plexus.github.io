@@ -6,8 +6,12 @@ package sample;
 import "interop/descriptor.proto";
 
 /**
-* Extend core metadata with custom 'alias' option to support short app names
+* Extend core metadata with custom 'alias' options to support shorter references
 */
 extend .interop.ApplicationOptions {
-	optional string alias = 1500;
+	optional string app_alias = 1500;
+}
+
+extend .interop.ProvidedMethodOptions {
+	optional string provided_method_alias = 1500;
 }
