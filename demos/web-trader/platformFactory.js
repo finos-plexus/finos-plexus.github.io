@@ -10,13 +10,13 @@ const authRequest = {
   password: 'password',
 };
 // Glue42 specific platform config.
-const platformConfig = {
+const gluePlatformConfig = {
   gateway: gw,
   auth: authRequest,
 };
 
 const plexusPlatformConfig = {
-  webSocketUrl: `ws://127.0.0.1:61851`
+  webSocketUrl: `ws://127.0.0.1:49917`
 };
 
 if (typeof window !== 'undefined') {
@@ -25,10 +25,14 @@ if (typeof window !== 'undefined') {
       .InteropPlatformFactory()
       .createPlatform(plexusPlatformConfig);
   } else {
-    window.platformFactory = async () => InteropPlatform(platformConfig);
+    window.platformFactory = async () => InteropPlatform(gluePlatformConfig);
   }
 } else if (typeof global !== 'undefined') {
-  const InteropPlatform = require('glue-interop-api-impl');
-  // Glue42 platform factory function.
-  module.exports = async () => InteropPlatform(platformConfig);
+  try {
+    const { InteropPlatformFactory } = require(`@plexus-interop/common-api-impl`)
+    module.exports = async () => new InteropPlatformFactory().createPlatform(plexusPlatformConfig);
+  } catch (error) {
+    const InteropPlatform = require('glue-interop-api-impl');
+    module.exports = async () => InteropPlatform(gluePlatformConfig);
+  }
 }
