@@ -20,12 +20,12 @@ service PriceService {
 }
 
 message OrderReference {
-    string id = 1;
+    int32 id = 1;
     string client_id = 2;
 }
 
 message Order {
-    string id = 1;
+    int32 id = 1;
     string client_id = 2;
     string instrument = 3;
     string position = 4;

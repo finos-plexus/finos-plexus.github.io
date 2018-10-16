@@ -143,7 +143,7 @@
 	          },
 	          "fields": {
 	            "id": {
-	              "type": "string",
+	              "type": "int32",
 	              "id": 1
 	            },
 	            "clientId": {
@@ -158,7 +158,7 @@
 	          },
 	          "fields": {
 	            "id": {
-	              "type": "string",
+	              "type": "int32",
 	              "id": 1
 	            },
 	            "clientId": {
