@@ -17,7 +17,7 @@ const gluePlatformConfig = {
 };
 
 // Plexus specific platform config
-const plexusWebSocketPort = 50736;
+const plexusWebSocketPort = 52486;
 const plexusPlatformConfig = {
   webSocketUrl: `ws://127.0.0.1:${plexusWebSocketPort}`
 };
