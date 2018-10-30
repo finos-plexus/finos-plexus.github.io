@@ -1,0 +1,31 @@
+{
+    "apps": [
+      {
+        "id": "sample.PricePublisher",
+        "displayName": "Price Publisher",
+        "launcherId": "interop.NativeAppLauncher",
+        "launcherParams": {
+          "cmd": "",
+          "args": ""
+        }
+      },
+      {
+        "id": "sample.WebTraderClient",
+        "displayName": "Web Trader Client",
+        "launcherId": "interop.NativeAppLauncher",
+        "launcherParams": {
+          "cmd": "",
+          "args": ""
+        }
+      },
+      {
+        "id": "sample.WebTraderServer",
+        "displayName": "Web Trader Server",
+        "launcherId": "interop.NativeAppLauncher",
+        "launcherParams": {
+          "cmd": "",
+          "args": ""
+        }
+      }
+    ]
+  }
