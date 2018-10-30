@@ -28,6 +28,7 @@
   };
   const streamsToBeRegisteredOnConnecting = [priceStream];
   // Invoking the interop-api-impl.min.js's InteropPlatform factory function.
-  const platform = platformFactory();
-  platform.connect(applicationName, undefined, undefined, streamsToBeRegisteredOnConnecting);
+  platformFactory()
+    .then(platform => platform.connect(applicationName, undefined, undefined, streamsToBeRegisteredOnConnecting))
+    .catch(e => console.error('Failed to created Platform Factory', e));
 })();

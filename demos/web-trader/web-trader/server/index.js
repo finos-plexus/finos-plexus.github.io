@@ -27,8 +27,9 @@
   };
   const methodsToBeRegisteredOnConnecting = [makeMartketOrderMethod, closeMarketOrderMethod];
   // Invoke the platform specific factory function.
-  window.platform = platformFactory();
+  window.platform = await platformFactory();
   window.peer = await window.platform.connect(applicationName, undefined, methodsToBeRegisteredOnConnecting);
+  appLogic.displayConnectedDetails(window.platform.type, window.peer.id);
   // When disconnected display the disconnected image and display 'Not connected'.
   window.peer.onConnectionStatusChanged((status) => {
     if (status === 'Connected') {

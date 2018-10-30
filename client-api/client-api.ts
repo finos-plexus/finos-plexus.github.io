@@ -278,7 +278,7 @@ interface InteropPlatform {
     /**
      * Notifies when application changed the published API metadata.
      */
-    onApiMetadataChanged(callback: (metadata: string) => void);
+    onApiMetadataChanged(callback: (metadata: string) => void): void;
   }
   
   /**

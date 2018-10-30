@@ -1,0 +1,40 @@
+
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+
+package sample;
+
+message Instrument {
+    string instrument = 1;
+}
+
+message Price {
+    double buy = 1;
+    double sell = 2; 
+}
+
+service PriceService {
+    rpc PriceStream (Instrument) returns (stream Price);
+}
+
+message OrderReference {
+    int32 id = 1;
+    string client_id = 2;
+}
+
+message Order {
+    int32 id = 1;
+    string client_id = 2;
+    string instrument = 3;
+    string position = 4;
+    double price = 5;
+    double amount = 6;
+    double value = 7;
+}
+
+service OrderService {
+    rpc CloseMarketOrder (OrderReference) returns (google.protobuf.Empty);
+    rpc MakeMarketOrder (Order) returns (google.protobuf.Empty);
+}

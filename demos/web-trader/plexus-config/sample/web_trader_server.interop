@@ -1,0 +1,12 @@
+
+package sample;
+import "sample/custom_options.proto";
+import "sample/services.proto";
+
+application WebTraderServer {
+    option (app_alias) = "web-trader-server";
+    provides OrderService { 
+         CloseMarketOrder [(provided_method_alias) = "close-market-order" ];
+         MakeMarketOrder [(provided_method_alias) = "make-market-order" ];
+    }
+}

@@ -1,11 +1,14 @@
 {
   "name": "interop-api-impl-demo",
   "version": "1.0.0",
-  "description": "",
+  "description": "A demo application to showcase the capabilities of the Common Interop API",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "validate-plexus-config": "plexus validate -b plexus-config",
+    "gen-plexus-config": "plexus gen-json-meta -b plexus-config -o plexus-config/interop.json -e '.*options.*'"
+  },
   "author": "",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "devDependencies": {
     "eslint": "^5.4.0",
     "eslint-config-airbnb": "^17.1.0",
@@ -13,9 +16,10 @@
     "eslint-plugin-import": "^2.14.0"
   },
   "dependencies": {
+    "@plexus-interop/common-api-impl": "0.3.8",
     "callback-registry": "^2.3.2",
-    "glue-interop-api-impl": "^1.0.6",
     "http-server": "^0.11.1",
-    "opn": "^5.3.0"
+    "opn": "^5.3.0",
+    "websocket": "^1.0.28"
   }
 }
