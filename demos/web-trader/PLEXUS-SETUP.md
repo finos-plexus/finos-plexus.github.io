@@ -16,7 +16,7 @@ At the end you should get Plexus Broker's `plexus.exe` file located in:
 
 # Run Broker
 
-Please run `start-plexus-broker.bat` file from console. Successfull launch will produce logs like:
+Please run `start-plexus-broker.bat` file from console. Successful launch will produce logs like:
 
 ```
 00:00:00.856 | Websocket server started: http://127.0.0.1:52486
