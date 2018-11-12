@@ -32,8 +32,6 @@ Please follow these steps to setup clients connection:
 
 - Copy `node_modules/@plexus-interop/common-api-impl/dist/main/src/platform-factory.bundle.js` to `web-trader/lib` folder
 - Uncomment `<script type="text/javascript" src="../lib/platform-factory.bundle.js"></script>` script in `web-trader/client/index.html` and `web-trader/server/index.html` files
-- Copy Web Socket Port value from logs of running Broker, it is `52486` for example logs above
-- Set copied value to `plexusWebSocketPort` variable in `platformFactory.js` file 
 
 Now clients are ready and you can start them with 
 ```

@@ -2,3 +2,4 @@ node_modules/
 web-trader/lib/glue-interop-api-impl.min.js
 *-lock
 logs/*
+servers

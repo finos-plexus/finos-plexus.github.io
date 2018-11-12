@@ -14,8 +14,8 @@
         "displayName": "Web Trader Client",
         "launcherId": "interop.NativeAppLauncher",
         "launcherParams": {
-          "cmd": "",
-          "args": ""
+          "cmd": "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe",
+          "args": "-–new-window http://localhost:8081/web-trader/client"
         }
       },
       {
@@ -23,8 +23,8 @@
         "displayName": "Web Trader Server",
         "launcherId": "interop.NativeAppLauncher",
         "launcherParams": {
-          "cmd": "",
-          "args": ""
+          "cmd": "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe",
+          "args": "-–new-window http://localhost:8081/web-trader/server"
         }
       }
     ]

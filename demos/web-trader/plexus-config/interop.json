@@ -201,6 +201,28 @@
 	              "responseType": "google.protobuf.Empty"
 	            }
 	          }
+	        },
+	        "ClientAppLifeCycleService": {
+	          "options": {
+	            "(.interop.service_id)": "sample.ClientAppLifeCycleService"
+	          },
+	          "methods": {
+	            "Open": {
+	              "requestType": "google.protobuf.Empty",
+	              "responseType": "google.protobuf.Empty"
+	            }
+	          }
+	        },
+	        "ServerAppLifeCycleService": {
+	          "options": {
+	            "(.interop.service_id)": "sample.ServerAppLifeCycleService"
+	          },
+	          "methods": {
+	            "Open": {
+	              "requestType": "google.protobuf.Empty",
+	              "responseType": "google.protobuf.Empty"
+	            }
+	          }
 	        }
 	      }
 	    },
@@ -1114,9 +1136,77 @@
 					"value": "sample.OrderService"
 				}
 			]
+		},
+		{
+			"id": "sample.ClientAppLifeCycleService",
+			"methods": [
+				{
+					"name": "Open",
+					"request": "google.protobuf.Empty",
+					"response": "google.protobuf.Empty",
+					"type": "Unary"
+				}
+			],
+			"options": [
+				{
+					"id": "interop.service_id",
+					"value": "sample.ClientAppLifeCycleService"
+				}
+			]
+		},
+		{
+			"id": "sample.ServerAppLifeCycleService",
+			"methods": [
+				{
+					"name": "Open",
+					"request": "google.protobuf.Empty",
+					"response": "google.protobuf.Empty",
+					"type": "Unary"
+				}
+			],
+			"options": [
+				{
+					"id": "interop.service_id",
+					"value": "sample.ServerAppLifeCycleService"
+				}
+			]
 		}
 	],
 	"applications": [
+		{
+			"id": "sample.WebAppLauncher",
+			"options": [
+				{
+					"id": "sample.app_alias",
+					"value": "web-apps-launcher"
+				}
+			]
+			,
+			"consumes": [
+				{
+					"service": "sample.ClientAppLifeCycleService",
+					"methods": [
+						{
+							"name": "Open"
+						}
+					],
+					"from": [
+						"sample.WebTraderClient"
+					]
+				},
+				{
+					"service": "sample.ServerAppLifeCycleService",
+					"methods": [
+						{
+							"name": "Open"
+						}
+					],
+					"from": [
+						"sample.WebTraderServer"
+					]
+				}
+			]
+		},
 		{
 			"id": "sample.PricePublisher",
 			"options": [
@@ -1172,6 +1262,22 @@
 						}
 					]
 				}
+			],
+			"provides": [
+				{
+					"service": "sample.ClientAppLifeCycleService",
+					"methods": [
+						{
+							"name": "Open",
+							"options": [
+								{
+									"id": "sample.provided_method_alias",
+									"value": "open-web-trader-client"
+								}
+							]
+						}
+					]
+				}
 			]
 		},
 		{
@@ -1202,6 +1308,20 @@
 								{
 									"id": "sample.provided_method_alias",
 									"value": "make-market-order"
+								}
+							]
+						}
+					]
+				},
+				{
+					"service": "sample.ServerAppLifeCycleService",
+					"methods": [
+						{
+							"name": "Open",
+							"options": [
+								{
+									"id": "sample.provided_method_alias",
+									"value": "open-web-trader-server"
 								}
 							]
 						}
