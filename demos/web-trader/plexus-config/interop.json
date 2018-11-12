@@ -1146,6 +1146,26 @@
 	],
 	"applications": [
 		{
+			"id": "sample.WebAppLauncher",
+			"options": [
+				{
+					"id": "sample.app_alias",
+					"value": "web-apps-launcher"
+				}
+			]
+			,
+			"consumes": [
+				{
+					"service": "sample.AppLifeCycleService",
+					"methods": [
+						{
+							"name": "Open"
+						}
+					]
+				}
+			]
+		},
+		{
 			"id": "sample.PricePublisher",
 			"options": [
 				{
