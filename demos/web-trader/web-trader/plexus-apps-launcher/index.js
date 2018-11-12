@@ -24,12 +24,13 @@
         .filter(app => app.applicationName !== applicationName)
         .forEach(app => {
             const peerAppName = app.applicationName;
+            const handler = () => {
+                window.peer.invoke(`open-${peerAppName}`);
+            };
             $('#apps-list').append(
                 $('<li>').append(
                     $('<a>')
-                    .bind('click', () => {
-                        window.peer.invoke(`open-${peerAppName}`);
-                    })
+                    .bind('click', handler)
                     .attr('href','#').append(
                         $('<span>').append(peerAppName)
             )));

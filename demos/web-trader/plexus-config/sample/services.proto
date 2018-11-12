@@ -54,6 +54,10 @@ service OrderService {
     rpc MakeMarketOrder (Order) returns (google.protobuf.Empty);
 }
 
-service AppLifeCycleService {
+service ClientAppLifeCycleService {
+    rpc Open(google.protobuf.Empty) returns (google.protobuf.Empty);
+}
+
+service ServerAppLifeCycleService {
     rpc Open(google.protobuf.Empty) returns (google.protobuf.Empty);
 }

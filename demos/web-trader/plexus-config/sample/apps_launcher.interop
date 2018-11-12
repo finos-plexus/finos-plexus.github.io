@@ -20,5 +20,6 @@ import "sample/services.proto";
 
 application WebAppLauncher {
     option (app_alias) = "web-apps-launcher";
-    consumes AppLifeCycleService { Open; }    
+    consumes ClientAppLifeCycleService { Open; } from  sample.WebTraderClient;
+    consumes ServerAppLifeCycleService { Open; } from  sample.WebTraderServer;
 }

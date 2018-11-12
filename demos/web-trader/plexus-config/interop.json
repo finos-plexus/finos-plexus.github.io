@@ -202,9 +202,20 @@
 	            }
 	          }
 	        },
-	        "AppLifeCycleService": {
+	        "ClientAppLifeCycleService": {
 	          "options": {
-	            "(.interop.service_id)": "sample.AppLifeCycleService"
+	            "(.interop.service_id)": "sample.ClientAppLifeCycleService"
+	          },
+	          "methods": {
+	            "Open": {
+	              "requestType": "google.protobuf.Empty",
+	              "responseType": "google.protobuf.Empty"
+	            }
+	          }
+	        },
+	        "ServerAppLifeCycleService": {
+	          "options": {
+	            "(.interop.service_id)": "sample.ServerAppLifeCycleService"
 	          },
 	          "methods": {
 	            "Open": {
@@ -1127,7 +1138,7 @@
 			]
 		},
 		{
-			"id": "sample.AppLifeCycleService",
+			"id": "sample.ClientAppLifeCycleService",
 			"methods": [
 				{
 					"name": "Open",
@@ -1139,7 +1150,24 @@
 			"options": [
 				{
 					"id": "interop.service_id",
-					"value": "sample.AppLifeCycleService"
+					"value": "sample.ClientAppLifeCycleService"
+				}
+			]
+		},
+		{
+			"id": "sample.ServerAppLifeCycleService",
+			"methods": [
+				{
+					"name": "Open",
+					"request": "google.protobuf.Empty",
+					"response": "google.protobuf.Empty",
+					"type": "Unary"
+				}
+			],
+			"options": [
+				{
+					"id": "interop.service_id",
+					"value": "sample.ServerAppLifeCycleService"
 				}
 			]
 		}
@@ -1156,11 +1184,25 @@
 			,
 			"consumes": [
 				{
-					"service": "sample.AppLifeCycleService",
+					"service": "sample.ClientAppLifeCycleService",
 					"methods": [
 						{
 							"name": "Open"
 						}
+					],
+					"from": [
+						"sample.WebTraderClient"
+					]
+				},
+				{
+					"service": "sample.ServerAppLifeCycleService",
+					"methods": [
+						{
+							"name": "Open"
+						}
+					],
+					"from": [
+						"sample.WebTraderServer"
 					]
 				}
 			]
@@ -1223,7 +1265,7 @@
 			],
 			"provides": [
 				{
-					"service": "sample.AppLifeCycleService",
+					"service": "sample.ClientAppLifeCycleService",
 					"methods": [
 						{
 							"name": "Open",
@@ -1272,7 +1314,7 @@
 					]
 				},
 				{
-					"service": "sample.AppLifeCycleService",
+					"service": "sample.ServerAppLifeCycleService",
 					"methods": [
 						{
 							"name": "Open",

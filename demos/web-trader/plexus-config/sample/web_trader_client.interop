@@ -22,7 +22,7 @@ application WebTraderClient {
     option (app_alias) = "web-trader-client";
     consumes PriceService { PriceStream; } 
     consumes OrderService { MakeMarketOrder; CloseMarketOrder; }
-    provides AppLifeCycleService { 
+    provides ClientAppLifeCycleService { 
         Open [(provided_method_alias) = "open-web-trader-client"]; 
     };    
 }
