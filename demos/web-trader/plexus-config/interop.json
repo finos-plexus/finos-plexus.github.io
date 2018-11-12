@@ -201,6 +201,17 @@
 	              "responseType": "google.protobuf.Empty"
 	            }
 	          }
+	        },
+	        "AppLifeCycleService": {
+	          "options": {
+	            "(.interop.service_id)": "sample.AppLifeCycleService"
+	          },
+	          "methods": {
+	            "Open": {
+	              "requestType": "google.protobuf.Empty",
+	              "responseType": "google.protobuf.Empty"
+	            }
+	          }
 	        }
 	      }
 	    },
@@ -1114,6 +1125,23 @@
 					"value": "sample.OrderService"
 				}
 			]
+		},
+		{
+			"id": "sample.AppLifeCycleService",
+			"methods": [
+				{
+					"name": "Open",
+					"request": "google.protobuf.Empty",
+					"response": "google.protobuf.Empty",
+					"type": "Unary"
+				}
+			],
+			"options": [
+				{
+					"id": "interop.service_id",
+					"value": "sample.AppLifeCycleService"
+				}
+			]
 		}
 	],
 	"applications": [
@@ -1172,6 +1200,22 @@
 						}
 					]
 				}
+			],
+			"provides": [
+				{
+					"service": "sample.AppLifeCycleService",
+					"methods": [
+						{
+							"name": "Open",
+							"options": [
+								{
+									"id": "sample.provided_method_alias",
+									"value": "open-web-trader-client"
+								}
+							]
+						}
+					]
+				}
 			]
 		},
 		{
@@ -1202,6 +1246,20 @@
 								{
 									"id": "sample.provided_method_alias",
 									"value": "make-market-order"
+								}
+							]
+						}
+					]
+				},
+				{
+					"service": "sample.AppLifeCycleService",
+					"methods": [
+						{
+							"name": "Open",
+							"options": [
+								{
+									"id": "sample.provided_method_alias",
+									"value": "open-web-trader-server"
 								}
 							]
 						}

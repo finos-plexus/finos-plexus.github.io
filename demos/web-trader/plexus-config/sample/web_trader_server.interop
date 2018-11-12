@@ -23,5 +23,8 @@ application WebTraderServer {
     provides OrderService { 
          CloseMarketOrder [(provided_method_alias) = "close-market-order" ];
          MakeMarketOrder [(provided_method_alias) = "make-market-order" ];
-    }
+    };
+    provides AppLifeCycleService { 
+        Open [(provided_method_alias) = "open-web-trader-server"]; 
+    };
 }
