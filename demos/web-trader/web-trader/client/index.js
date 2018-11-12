@@ -20,7 +20,7 @@
   appLogic.updateBalance(10000);
 
   // Invoke the platform specific factory function.
-  window.platform = await platformFactory();
+  window.platform = platformFactory();
   window.peer = await window.platform.connect(applicationName);
   appLogic.displayConnectedDetails(window.platform.type, window.peer.id);  
   // When disconnected display the disconnected image and display 'Not connected'.

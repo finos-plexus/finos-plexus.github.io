@@ -18,11 +18,8 @@ package sample;
 import "sample/custom_options.proto";
 import "sample/services.proto";
 
-application WebTraderClient {
-    option (app_alias) = "web-trader-client";
-    consumes PriceService { PriceStream; } 
-    consumes OrderService { MakeMarketOrder; CloseMarketOrder; }
-    provides ClientAppLifeCycleService { 
-        Open [(provided_method_alias) = "open-web-trader-client"]; 
-    };    
+application WebAppLauncher {
+    option (app_alias) = "web-apps-launcher";
+    consumes ClientAppLifeCycleService { Open; } from  sample.WebTraderClient;
+    consumes ServerAppLifeCycleService { Open; } from  sample.WebTraderServer;
 }
