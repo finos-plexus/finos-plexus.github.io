@@ -72,10 +72,12 @@ interface InteropPlatform {
     DiscoverStreams = "DiscoverStreams",
     ListenPeerConnected = "ListenPeerConnected",
     ListenMethodRegistered = "ListenMethodRegistered",
-    ListenStreamRegistered = "ListenStreamRegistered"
+    ListenStreamRegistered = "ListenStreamRegistered",
+    PublishOnTopic = "PublishOnTopic",
+    SubscribeForTopic = "SubscribeForTopic"
   }
   
-  interface InteropPeer extends InteropClient, InteropServer, InteropPeerDescriptor {
+  interface InteropPeer extends InteropClient, InteropServer, PubSub, InteropPeerDescriptor {
   
     connectionStatus: ConnectionStatus; // Shows the current connection status of the peer.
   
@@ -246,6 +248,36 @@ interface InteropPlatform {
      * to help dev tools to build swagger-like API explorers.
      */
     publishApiMetadata(apiMetadata: string): Promise<void>;
+  }
+
+  /**
+   * A container for the 'PubSub' functionality.
+   */
+  interface PubSub {
+    /**
+     * @param  {string}                                    topic   The name of the topic on which to publish a message.
+     * @param  {object}                                    data    The data to publish on the specific topic.
+     * @param  {PubSubInstance}                            target  If omitted then the message will be published to all peers that have subscribed to the current topic.
+     *                                                             If present it specifies the peer (and potentially their windows) to which the message will be published.
+     *                                                             Peers will only receive the message if they have already subscribed to the specific topic. 
+     * @return {Promise<void>}                             A promise which resolves when a message has been successfully published and rejects on failure to publish.
+     */
+    publishOnTopic(topic: string, data: object, target?: PubSubInstance): Promise<void>;
+
+    /**
+     * @param  {string}                                                                     topic     The name of the topic to receive messages for or a wildcard to subscribe for receiving messages on multiple topics.
+     *                                                                                                Topic wildcard subscription is TBA.
+     * @param  {(data: object, topic: string, source: PubSubInstance) => void}              callback  The method to be invoked when a message is published on the topic that the peer is subscribed for.
+     *                                                                                                Receives the message, the topic and the publisher as arguments.
+     * @param  {PubSubInstance}                                                             source    If omited, subscribe for messages published on the topic by any peer.
+     *                                                                                                If specified, subscribe for messages published only by the source peer.
+     * @return {Promise<Subscription>}                                                      An object with unsubscribe method which can be called to stop listening for updates on the topic.
+     */
+    subscribeForTopic(
+      topic: string, 
+      callback: (data: object, topic: string, source: PubSubInstance) => void,
+      source?: PubSubInstance
+    ): Promise<Subscription>;
   }
   
   /**
@@ -424,4 +456,13 @@ interface MethodIntent {
   contexts?: string;                  /* Optional 'context' which define when this method is able to implement the Intent.
                                          This should be thought of as 'restrictions' on the scope of a method.
                                          For example there might be a restriction to say the Intent can only be delivered for exchange traded equities. */
+}
+
+/**
+ * An object that's used to target a publish or subscription in a bus environment.
+ */
+interface PubSubInstance {
+  id?: string,     // peer/application id
+  name?: string    // peer/application name or name of a specific window in an application
+  extra?: object   // implementation specific optional dictionary
 }
