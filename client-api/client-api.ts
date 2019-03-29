@@ -30,7 +30,7 @@
 interface InteropPlatform {
     type: string;                       // Specifies the platform type (e.g. 'Glue42', 'Plexus Interop', etc.).
     version: string;                    // The version of the platform.
-  
+
     /**
      * @param  {InteropFeature}     feature       Identifies an interop feature.
      * 
@@ -126,19 +126,18 @@ interface InteropPlatform {
                                            disconnect has not yet been completed. */
     Disconnected = "Disconnected",      // The platform is disconnected.
   }
-  
-  /**
-   * A container for the 'Client' functionality.
-   */
-  interface InteropClient {
+
+  interface MethodInvoker {
     /**
      * @param  {string                 |       Method}      method  The name of the method or the method instance to be invoked.
      * @param  {any}                                        args    An object containing the arguments to be used for the invocation.
      * @return {Promise<InvokeResult>}                              Outcome of the method invocation, containing the result, caller and
      *                                                              other information.
      */
-    invoke(method: string | Method, args?: any): Promise<InvokeResult>;
-  
+    invoke(method: string | Method, args?: any): Promise<InvokeResult>;    
+  }
+
+  interface StreamSubscriber {
     /**
      * @param  {string                         |    Stream}      stream   The name of the stream or the stream instance to subscribe to.
      * @param  {StreamObserver}                                  observer An object which will be notified on stream events.
@@ -148,26 +147,34 @@ interface InteropPlatform {
     subscribe(
       stream: string | Stream, 
       observer: StreamObserver, 
-      args?: any): Promise<StreamSubscription>;
-  
+      args?: any): Promise<StreamSubscription>;    
+  }
+
+  interface PeerDiscoveryClient {
     /**
      * @return {Promise<InteropPeerDescriptor[]>} List of all the peers currently participating in the interop communication.
      */
     discoverPeers(): Promise<InteropPeerDescriptor[]>;
-  
+  }
+
+  interface MethodDiscoveryClient {
     /**
      * @return {Promise<Method[]>} List of all the currently registered methods.
      *                             Can be used to discover methods.
      */
     discoverMethods(): Promise<Method[]>;
-  
+  }
+
+  interface StreamDiscoveryClient {
     /**
      * @return {Promise<Stream[]>} List of all the currently registered streams.
      *                             Can be used to discover streams.
      */
-    discoverStreams(): Promise<Stream[]>;
-  
-    /**
+    discoverStreams(): Promise<Stream[]>;    
+  }
+
+  interface MethodRegistrationListener {
+        /**
      * @param  {Method)          => void}        callback Event listener, called whenever a method is registered by a server.
      * @return {Subscription}                    Subscription object which can be used to unsubscribe the event listener.
      */
@@ -178,7 +185,9 @@ interface InteropPlatform {
      * @return {Subscription}                    Subscription object which can be used to unsubscribe the event listener.
      */
     onMethodUnregistered(callback: (method: Method) => void): Subscription;
-  
+  }
+
+  interface StreamRegistrationListener {
     /**
      * @param  {Stream)          => void}        callback Event listener, called whenever a stream is registered by a server.
      * @return {Subscription}                    Subscription object which can be used to unsubscribe the event listener.
@@ -190,7 +199,9 @@ interface InteropPlatform {
      * @return {Subscription}                    Subscription object which can be used to unsubscribe the event listener.
      */
     onStreamUnregistered(callback: (stream: Stream) => void): Subscription;
-  
+  }
+
+  interface PeerConnectionListener {
     /**
      * @param  {InteropPeerDescriptor) => void}        callback Event listener, called whenever a new peer is connected.
      * @return {Subscription}                    Subscription object which can be used to unsubscribe the event listener.
@@ -201,7 +212,16 @@ interface InteropPlatform {
      * @param  {InteropPeerDescriptor) => void}        callback Event listener, called whenever a peer is disconnected.
      * @return {Subscription}                    Subscription object which can be used to unsubscribe the event listener.
      */
-    onPeerDisconnected(callback: (peer: InteropPeerDescriptor) => void): Subscription;
+    onPeerDisconnected(callback: (peer: InteropPeerDescriptor) => void): Subscription;    
+  }
+
+  /**
+   * A container for the 'Client' functionality.
+   */
+  interface InteropClient 
+    extends MethodInvoker, StreamSubscriber, 
+            MethodDiscoveryClient, StreamDiscoveryClient, PeerDiscoveryClient,
+            MethodRegistrationListener, StreamRegistrationListener, PeerConnectionListener {
   }
 
   /**
@@ -220,18 +240,17 @@ interface InteropPlatform {
     arguments?: object;                 // An object containing the arguments used for the subscription.
     stream: Stream;                     // Reference to the stream that the subscription is to.
   }  
-  
-  /**
-   * A container for the 'Server' functionality.
-   */
-  interface InteropServer {
+
+  interface MethodRegistry {
     /**
      * @param  {MethodImplementation} methodImplementation Method implementation, specifying the method's name, properties and invocation
      *                                                     handler.
      * @return {Promise<RegisteredMethod>}                 Method object containing the method's details and function to unregister the method implementation.
      */
     register(methodImplementation: MethodImplementation): Promise<RegisteredMethod>;
-  
+  }
+
+  interface StreamRegistry {
     /**
      * @param  {StreamImplementation} streamImplementation Stream implementation, specifying the stream's name, properties and subscription
      *                                                     handlers. The stream can be closed (unregistered) by calling close() on the
@@ -239,13 +258,21 @@ interface InteropPlatform {
      * @return {Promise<RegisteredStream>}                 RegisteredStream object containing the stream's details and function to unregisted the stream implementation.
      */
     registerStream(streamImplementation: StreamImplementation): Promise<RegisteredStream>;
+  }
 
+  interface ApiMetadataPublisher {
     /**
      * Publishes metadata which describes API implemented by the app
      * in proto3 syntax (https://developers.google.com/protocol-buffers/docs/proto3)
      * to help dev tools to build swagger-like API explorers.
      */
     publishApiMetadata(apiMetadata: string): Promise<void>;
+  } 
+  
+  /**
+   * A container for the 'Server' functionality.
+   */
+  interface InteropServer extends MethodRegistry, StreamRegistry, ApiMetadataPublisher {  
   }
   
   /**
