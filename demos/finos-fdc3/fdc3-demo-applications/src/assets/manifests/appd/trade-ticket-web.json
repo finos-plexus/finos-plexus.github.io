@@ -1,0 +1,29 @@
+{
+  "appId": "trade-ticket-web",
+  "name": "trade-ticket-web",
+  "version": "1.0.0",
+  "title": "Trade Ticket Browser",
+  "tooltip": "Trade Ticket Browser",
+  "description": "Trade Ticket Browser",
+  "images": [],
+  "publisher": "Glue42",
+  "icons": [
+    {
+      "icon": "../resources/icons/browser.svg"
+    }
+  ],
+  "customConfig": [
+    {
+	  "name": "showInToolbar",
+	  "value": "false"
+    }
+  ],
+  "intents": [
+    {
+      "name": "show-trade-ticket",
+      "displayName": "Show Trade Ticket"
+    }
+  ],
+  "manifestType": "org.finos.fdc3.demo",
+  "manifest": "{\"type\":\"browser\",\"url\":\"http://localhost:4200/trade-ticket\"}"
+}

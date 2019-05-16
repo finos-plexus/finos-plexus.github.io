@@ -1,0 +1,66 @@
+<!-- Copyright © 2014-2019 Tick42 OOD
+SPDX-License-Identifier: Apache-2.0
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License. -->
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Glue42 FINOS FDC3 AppD demo application config</title>
+  <link rel="stylesheet" href="styles/bootstrap.min.css">
+  <style>
+    ::-webkit-scrollbar-track {
+      border-radius: 10px;
+      background-color: #222222;
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+      background-color: #222222;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background-color: #444444;
+    }
+  </style>
+  <script>
+    window.onload = function () {
+      const appId = window.location.hash.substr(1);
+      window.glue42DemoToolbar.providers.subscribe((providers) => {
+        providers.forEach((provider) => {
+          provider.getApps()
+            .then((apps) => {
+              apps.forEach((app) => {
+                if (app.appId === appId) {
+                  document.getElementById('no-app-config-alert').style.display = 'none';
+                  document.getElementById('title').innerHTML = `"${app.title}" JSON Config`;
+                  app.manifest = JSON.parse(app.manifest);
+                  document.getElementById('app-config').innerHTML = JSON.stringify(app, null, 2);
+                }
+              });
+            })
+            .catch(console.error);
+        });
+      });
+    }
+  </script>
+</head>
+<body>
+  <div class="container-fluid">
+    <h2 class="mt-3" id="title">JSON Config</h2>
+    <div class="alert alert-dismissible alert-info mt-3" id="no-app-config-alert">
+      The application JSON config was not found
+    </div>
+    <pre class="mt-3" id="app-config"></pre>
+  </div>
+</body>
+</html>

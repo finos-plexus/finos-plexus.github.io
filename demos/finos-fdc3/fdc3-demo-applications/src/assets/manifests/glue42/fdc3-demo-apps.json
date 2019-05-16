@@ -1,0 +1,62 @@
+[
+	{
+		"title": "Instrument List G42",
+		"type": "window",
+		"name": "instrument-list-glue42",
+		"hidden": false,
+		"allowMultiple": false,
+		"details": {
+			"url": "http://localhost:4200/instrument-list",
+			"top": 100,
+			"left": 400,
+			"height": 900,
+			"width": 700,
+			"title": "Instrument List"
+		}
+	},
+	{
+		"title": "Instrument Price Chart G42",
+		"type": "window",
+		"name": "instrument-price-chart-context-glue42",
+		"hidden": false,
+		"allowMultiple": false,
+		"details": {
+			"url": "http://localhost:4200/instrument-price-chart",
+			"top": 100,
+			"left": 400,
+			"height": 900,
+			"width": 700,
+			"title": "Instrument Price Chart"
+		}
+	},
+	{
+		"title": "Instrument Price Chart Intent G42",
+		"type": "window",
+		"name": "instrument-price-chart-intent-glue42",
+		"hidden": false,
+		"allowMultiple": false,
+		"details": {
+			"url": "http://localhost:4200/instrument-price-chart#1",
+			"top": 100,
+			"left": 400,
+			"height": 900,
+			"width": 700,
+			"title": "Instrument Price Chart"
+		}
+	},
+	{
+		"title": "Trade Ticket G42",
+		"type": "window",
+		"name": "trade-ticket-glue42",
+		"hidden": false,
+		"allowMultiple": false,
+		"details": {
+			"url": "http://localhost:4200/trade-ticket",
+			"top": 100,
+			"left": 400,
+			"height": 900,
+			"width": 700,
+			"title": "Trade Ticket"
+		}
+	}
+]

@@ -1,0 +1,24 @@
+{
+  "appId": "instrument-list-web",
+  "name": "instrument-list-web",
+  "version": "1.0.0",
+  "title": "Instrument List Browser",
+  "tooltip": "Instrument List Browser",
+  "description": "Instrument List Browser",
+  "images": [],
+  "publisher": "Glue42",
+  "icons": [
+    {
+      "icon": "../resources/icons/browser.svg"
+    }
+  ],
+  "customConfig": [
+  	{
+	  "name": "showInToolbar",
+	  "value": "true"
+	}
+  ],
+  "intents": [],
+  "manifestType": "org.finos.fdc3.demo",
+  "manifest": "{\"type\":\"browser\",\"url\":\"http://localhost:4200/instrument-list\"}"
+}

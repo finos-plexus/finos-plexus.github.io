@@ -1,0 +1,47 @@
+<!-- Copyright © 2014-2019 Tick42 OOD
+SPDX-License-Identifier: Apache-2.0
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License. -->
+
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
+<div class="container-fluid">
+  <h1 class="text-center">Instrument List</h1>
+  <div class="row" *ngIf="!isGlueWindow">
+    <button class="btn btn-link ml-auto" (click)="goToLogin()" placement="left" [ngbTooltip]="'Settings'">
+      <i class="fas fa-cog"></i>
+    </button>
+  </div>
+  <ul class="list-group" [class.instrument-container]="!isGlueWindow" [class.instrument-container-glue]="isGlueWindow">
+    <li class="list-group-item" *ngFor="let instrument of instruments">
+      <div class="btn-group" dropdown>
+        <button class="btn btn-link" dropdownToggle aria-controls="dropdown-basic">
+          <i class="fas fa-ellipsis-v" aria-hidden="true"></i>
+        </button>
+        <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+          <div *ngFor="let intent of intents">
+            <div *ngIf="intent.show">
+              <li role="menuitem" class="pl-2">{{intent.intent.displayName}}</li>
+              <li class="divider dropdown-divider"></li>
+              <div *ngFor="let app of intent.apps">
+                <li class="pointer" role="menuitem" *ngIf="app.show">
+                  <a class="dropdown-item" (click)="raiseIntent(intent.intent.name, instrument, app)">{{app.title}}</a>
+                </li>
+              </div>
+              <li class="divider dropdown-divider"></li>
+            </div>
+          </div>
+        </ul>
+      </div>
+      <button class="btn btn-link" (click)="broadcast(instrument)">
+        {{instrument.description}}
+      </button>
+    </li>
+  </ul>
+  <div class="alert alert-primary" *ngIf="instruments.length === 0">There are no instruments available</div>
+</div>

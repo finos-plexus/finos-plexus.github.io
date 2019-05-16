@@ -1,0 +1,78 @@
+[
+  {
+    "timestamp": 1550741730800,
+    "type": "ERROR",
+    "origin": "Toolbar",
+    "message": {
+      "message": "request to http://localhost:8080/appd/user/authenticate failed, reason: connect ECONNREFUSED 127.0.0.1:8080",
+      "type": "system",
+      "errno": "ECONNREFUSED",
+      "code": "ECONNREFUSED",
+      "name": "FetchError"
+    },
+    "show": true
+  },
+  {
+    "timestamp": 1550741730507,
+    "type": "ERROR",
+    "origin": "Toolbar",
+    "message": {
+      "message": "request to http://localhost:8080/appd/user/authenticate failed, reason: connect ECONNREFUSED 127.0.0.1:8080",
+      "type": "system",
+      "errno": "ECONNREFUSED",
+      "code": "ECONNREFUSED",
+      "name": "FetchError"
+    },
+    "show": true
+  },
+  {
+    "timestamp": 1550741730507,
+    "type": "INFO",
+    "origin": "Toolbar",
+    "message": "Toolbar window ready.",
+    "show": true
+  },
+  {
+    "timestamp": 1550721730507,
+    "type": "INFO",
+    "origin": "Electron",
+    "message": "Electron ready.",
+    "show": true
+  },
+  {
+    "timestamp": 1550741730507,
+    "type": "INFO",
+    "origin": "Toolbar",
+    "message": "Will add provider \"Glue Desktop\" with URL \"http://localhost:3000\"",
+    "show": true
+  },
+  {
+    "timestamp": 1550741730507,
+    "type": "INFO",
+    "origin": "Toolbar",
+    "message": "Will add provider \"Dock01 App Directory\" with URL \"http://localhost:8080/appd/v1\"",
+    "show": true
+  },
+  {
+    "timestamp": 1550741730500,
+    "type": "INFO",
+    "origin": "Toolbar",
+    "message": "Will add provider \"Glue Desktop\" with URL http://localhost:3000",
+    "show": true
+  },
+  {
+    "timestamp": 1550741730500,
+    "type": "INFO",
+    "origin": "Toolbar",
+    "message": "Will add provider \"Dock01 App Directory\" with URL http://localhost:8080/appd/v1",
+    "show": true
+  },
+  {
+    "timestamp": 1550742052852,
+    "type": "INFO",
+    "origin": "Angular",
+    "message": "Showing app info for \"Client List\"",
+    "1CanvasDummy": "",
+    "show": true
+  }
+]

@@ -1,0 +1,34 @@
+{
+  "name": "finos-fdc3-appd-toolbar",
+  "productName": "FINOS FDC3 App Directory evaluation toolbar",
+  "version": "1.0.0",
+  "description": "A simple toolbar that can display and launch applications",
+  "main": "app-js/main.js",
+  "scripts": {
+    "build": "npm run tslint && tsc",
+    "tslint": "node_modules/.bin/tslint ./app/**/*.ts",
+    "package:win": "electron-packager . finos-fdc3-appd-toolbar --overwrite --platform=win32 --arch=all --icon=resources/icons/fdc3.png.ico --prune=true --out=release-builds --version-string.ProductName=\"FINOS FDC3 AppD Toolbar\"",
+    "package:all": "electron-packager . finos-fdc3-appd-toolbar --overwrite --platform=all --arch=all --icon=resources/icons/fdc3.png.ico --prune=true --out=release-builds --version-string.ProductName=\"FINOS FDC3 AppD Toolbar\""
+  },
+  "author": "Tick42",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@types/node-fetch": "^2.1.2",
+    "angular": "^1.7.2",
+    "bootstrap.native": "^2.0.23",
+    "node-fetch": "^2.2.0",
+    "rxjs": "^5.4.2",
+    "typescript": "^2.9.2"
+  },
+  "devDependencies": {
+    "electron": "^2.0.6",
+    "electron-packager": "^12.1.1",
+    "tslint": "^5.11.0"
+  },
+  "optionalDependencies": {
+    "@plexus-interop/common-api-impl": "^0.4.0",
+    "com-glue42-finos-fdc3-api-impl": "^1.0.10",
+    "glue-interop-api-impl": "^1.1.4",
+    "websocket": "^1.0.28"
+  }
+}
