@@ -1,0 +1,46 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Eikon Manager Module</title>
+  <meta name="description" content="Eikon Manager Module">
+
+  <!-- The Glue42 implementation of the FINOS Common Interop API (https://github.com/finos-plexus/finos-plexus.github.io). -->
+  <!-- <script src="./lib/finos-interop-api-glue42-impl/finos-interop-api-glue42-impl.js"></script> -->
+
+  <!-- The Plexus (Deutsche Bank) implementation of the FINOS Common Interop API (https://github.com/finos-plexus/finos-plexus.github.io). -->
+  <script src="./lib/finos-interop-api-plexus-impl/finos-interop-api-plexus-impl.js"></script>
+</head>
+
+<body>
+  <div id="prompt">
+    <h3>Which FINOS Interop API implementation do you want to use?</h3>
+
+    <form id="form">
+      Username (optional):
+      <br>
+      <input id="username" type="text">
+      <br>
+      <br>
+      Password (optional):
+      <br>
+      <input id="password" type="text">
+      <br>
+      <br>
+      Bus:
+      <br>
+      <select id="bus">
+      </select>
+      <br>
+      <br>
+      <input id="submit" type="submit" value="Submit">
+    </form>
+  </div>
+
+  <script src="./index.js"></script>
+</body>
+
+</html>
