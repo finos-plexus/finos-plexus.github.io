@@ -1,0 +1,47 @@
+<!-- Copyright © 2014-2019 Tick42 OOD
+SPDX-License-Identifier: Apache-2.0
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License. -->
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>FINOS Interop API Implementations</title>
+  <link rel="stylesheet" href="styles/bootstrap.min.css">
+  <script>
+    const electron = require('electron');
+    window.onload = function () {
+      const bntContainer = document.getElementById('interop-api-impl-container');
+      const interopImplementations = electron.ipcRenderer.sendSync('get-list-of-interop-impls');
+
+      for (const interopImpl of interopImplementations) {
+        const button = document.createElement('button');
+        button.innerHTML = `${interopImpl}`;
+        button.className = 'btn btn-primary mr-2';
+        button.id = `${interopImpl}`;
+        button.onclick = (ev) => {
+          electron.ipcRenderer.sendSync('get-interop-api-impl', [ev.target.id]);
+        };
+        bntContainer.append(button);
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="container-fluid">
+    <h1 class="text-center" id="title">Choose Interop API Implementation</h1>
+    <div class="row">
+      <div class="col">
+        <div id="interop-api-impl-container" class="text-center mt-3"></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

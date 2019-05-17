@@ -1,0 +1,107 @@
+[
+  {
+    "appId": "clientcontact",
+    "name": "clientcontact",
+    "version": "",
+    "title": "Client Contact",
+    "tooltip": "",
+    "description": "",
+    "images": [],
+    "contactEmail": "",
+    "supportEmail": "",
+    "publisher": "",
+    "icons": [
+      {
+        "icon": "https://enterprise-demos.tick42.com/resources/icons/client-contact.ico"
+      }
+    ],
+    "customConfig": [],
+    "intents": [],
+    "manifestType": "org.finos.fdc3.demo.host",
+    "manifest": "{\n    \"type\": \"host\",\n    \"hostType\": \"Glue42\",\n    \"hostName\": \"Glue42\",\n    \"hostManifest\": \"\"\n  }",
+    "provider": {
+      "name": "Glue Desktop",
+      "apiUrl": "http://localhost:3000",
+      "email": "",
+      "password": "",
+      "authUrl": "",
+      "status": "connected"
+    }
+  },
+  {
+    "appId": "Glue42 Website",
+    "name": "Glue42 Website",
+    "version": "1.0.0",
+    "title": "Glue42 Website",
+    "tooltip": "Glue42 Website",
+    "description": "Glue42 Website",
+    "images": [],
+    "contactEmail": "",
+    "supportEmail": "",
+    "publisher": "Glue42",
+    "icons": [
+      {
+        "icon": "../resources/icons/glue42.png"
+      }
+    ],
+    "customConfig": [
+      {
+        "name": "string",
+        "value": "string"
+      }
+    ],
+    "intents": [
+      {
+        "name": "show-glue42-com"
+      }
+    ],
+    "manifestType": "org.finos.fdc3.demo",
+    "manifest": "{\"type\":\"browser\",\"url\":\"https://glue42.com\"}",
+    "provider": {
+      "name": "Dock01 App Directory",
+      "apiUrl": "http://localhost:8080/appd/v1",
+      "email": "georgi.georgiev@tick42.com",
+      "password": "password",
+      "authUrl": "http://localhost:8080/appd/user/authenticate",
+      "status": "connected"
+    }
+  },
+  {
+    "appId": "Excel",
+    "name": "Excel",
+    "version": "1.0.0",
+    "title": "Excel",
+    "tooltip": "Excel",
+    "description": "Microsoft Excel",
+    "images": [],
+    "contactEmail": "",
+    "supportEmail": "",
+    "publisher": "Tick42",
+    "icons": [
+      {
+        "icon": "https://cdn.freebiesupply.com/logos/large/2x/microsoft-excel-2013-logo-png-transparent.png"
+      }
+    ],
+    "customConfig": [
+      {
+        "name": "string",
+        "value": "string"
+      }
+    ],
+    "intents": [
+      {
+        "name": "open-sheets"
+      }
+    ],
+    "manifestType": "org.finos.fdc3.demo",
+    "manifest": "{\"type\":\"exe\",\"exePath\":\"C:\\\\Program Files (x86)\\\\Microsoft Office\\\\root\\\\Office16\\\\EXCEL.EXE\"}",
+    "provider": {
+      "name": "Dock01 App Directory",
+      "apiUrl": "http://localhost:8080/appd/v1",
+      "email": "georgi.georgiev@tick42.com",
+      "password": "password",
+      "authUrl": "http://localhost:8080/appd/user/authenticate",
+      "status": "connected"
+    }
+  }
+]

@@ -1,0 +1,112 @@
+/**
+* Copyright © 2014-2018 Tick42 BG OOD, Deutsche Bank AG
+* SPDX-License-Identifier: Apache-2.0
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+
+package sample;
+
+message Id {
+    string ric = 1;
+    string description = 2;
+}
+
+message Context {
+    Id id = 1;
+    string type = 2;
+}
+
+message Intent {
+    string name = 1;
+    string display_name = 2;
+}
+
+message Image {
+    string url = 1;
+}
+
+message Icon {
+    string icon = 1;
+}
+
+message Fdc3Application {
+    string app_id = 1;
+    string name = 2;
+    string version = 3;
+    string title = 4;
+    string tooltip = 5;
+    string description = 6;
+    repeated Image images = 7;
+    string publisher = 8;
+    repeated Icon icons = 9;
+    repeated Intent intents = 10;
+    string manifest_type = 11;
+    string manifest = 12;
+}
+
+message Fdc3ApplicationArray {
+    repeated Fdc3Application applications = 1;
+}
+
+message Application {
+    string application = 1;
+}
+
+message ApplicationContext {
+    Context context = 1;
+    string application = 2;
+}
+
+message ApplicationInstance {
+    Application application = 1;
+    string instance_id = 2;
+}
+
+message IntentApps {
+    Intent intent = 1;
+    repeated Fdc3Application apps = 2;
+}
+
+message IntentAppsArray {
+    repeated IntentApps intentapps = 1;
+}
+
+service EikonManagerModuleService {
+    rpc Fdc3EikonListApplications (google.protobuf.Empty) returns (Fdc3ApplicationArray);
+    rpc Fdc3EikonStartApplication (ApplicationContext) returns (ApplicationInstance);
+    rpc Fdc3EikonContextListener (Context) returns (google.protobuf.Empty);
+    rpc Fdc3EikonShowChart (Context) returns (google.protobuf.Empty);
+    rpc Fdc3EikonShowNews (Context) returns (google.protobuf.Empty);
+}
+
+service ToolbarService {
+    rpc Fdc3ToolbarListApplications (google.protobuf.Empty) returns (Fdc3ApplicationArray);
+    rpc Fdc3ToolbarStartApplication (Application) returns (google.protobuf.Empty);
+    rpc Fdc3ToolbarFindIntents (google.protobuf.Empty) returns (IntentAppsArray);
+    rpc Fdc3ToolbarBroadcast (Context) returns (google.protobuf.Empty);
+}
+
+service InstrumentPriceChartService {
+    rpc Fdc3PlexusShowChart (Context) returns (google.protobuf.Empty);
+    rpc Fdc3PlexusContextListener (Context) returns (google.protobuf.Empty);
+}
+
+service TradeTicketService {
+    rpc Fdc3PlexusShowTradeTicket (Context) returns (google.protobuf.Empty);
+    rpc Fdc3PlexusContextListener (Context) returns (google.protobuf.Empty);
+}

@@ -1,0 +1,42 @@
+[
+  {
+    "ric": "TWTR.K",
+    "description": "Twitter Inc"
+  },
+  {
+    "ric": "ANTM.K",
+    "description": "Anthem Inc"
+  },
+  {
+    "ric": "BARC.L",
+    "description": "Barclays PLC"
+  },
+  {
+    "ric": "BXP",
+    "description": "Boston Properties Inc"
+  },
+  {
+    "ric": "CGC.AX",
+    "description": "Costa Group Holdings Ltd"
+  },
+  {
+    "ric": "CBS",
+    "description": "CBS Corp"
+  },
+  {
+    "ric": "CNA.L",
+    "description": "Centrica PLC"
+  },
+  {
+    "ric": "LNG",
+    "description": "Liquefied natural gas"
+  },
+  {
+    "ric": "1113.HK",
+    "description": "CK Asset Holdings Ltd"
+  },
+  {
+    "ric": "DELL.K",
+    "description": "Dell Technologies Inc"
+  }
+]

@@ -1,0 +1,51 @@
+<!-- Copyright © 2014-2019 Tick42 OOD
+SPDX-License-Identifier: Apache-2.0
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License. -->
+
+<div class="app-list-container" *ngIf="showContent && !showSettings">
+  <div *ngIf="showContent && !showSettings" class="p-3 bg-dark filter-container">
+    <form name="filter">
+      <input class="form-control mr-sm-2" type="text" name="filter-input" placeholder="Filter" [ngModel]="searchValue"
+        (ngModelChange)="onSearch($event)">
+    </form>
+  </div>
+  <ul class="list-group m-3">
+    <li class="list-group-item d-flex align-items-center" *ngFor="let app of apps">
+      <button class="btn btn-link" (click)="toggleFavouriteApp(app)">
+        <i class="fa-star" [class.fas]="app.isFavourite" [class.far]="!app.isFavourite"></i>
+      </button>
+      <button class="btn btn-link" (click)="startApp(app)">
+        <img [src]="app.iconPath" [alt]=app.title class="app-icon img-thumbnail mr-3" />{{app.title}}
+      </button>
+      <button class="ml-auto btn btn-link" (click)="showAppConfig(app)">
+        <i class="fa fa-info" aria-hidden="true"></i>
+      </button>
+    </li>
+  </ul>
+  <div class="alert alert-primary m-3" *ngIf="apps.length === 0">There are no applications available</div>
+</div>
+<app-modal-dialog #logModalDialog [title]="appJSONConfigTitle">
+  <div class="modal-body">
+    <pre>{{appJSONConfig}}</pre>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" ngxClipboard [cbContent]="appJSONConfig">
+      Copy to clipboard
+    </button>
+    <button type="button" class="btn btn-primary" (click)="openInNewWindow()">
+      Open in new window
+    </button>
+  </div>
+</app-modal-dialog>
+<app-modal-dialog #appStartErrorModalDialog [title]="appStartErrorTitle">
+  <div class="modal-body">
+    <p>{{appStartErrorMessage}}</p>
+  </div>
+</app-modal-dialog>

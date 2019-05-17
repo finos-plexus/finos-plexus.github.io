@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Glue Desktop",
+    "apiUrl": "http://localhost:3000",
+    "email": "",
+    "password": "",
+    "authUrl": ""
+  },
+  {
+    "name": "Dock01 App Directory",
+    "apiUrl": "http://localhost:8080/appd/v1",
+    "email": "georgi.georgiev@tick42.com",
+    "password": "password",
+    "authUrl": "http://localhost:8080/appd/user/authenticate"
+  }
+]

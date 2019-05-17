@@ -1,0 +1,28 @@
+<!-- Copyright © 2014-2019 Tick42 OOD
+SPDX-License-Identifier: Apache-2.0
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License. -->
+
+<nav class="navbar navbar-dark bg-dark">
+  <button type="button" class="btn btn-link" [class.active]="showContent && !showSettings" (click)="toggleView()">
+    <i class="btn-lg pointer fas fa-bars" ></i>
+  </button>
+  <div class="toolbar-apps-container">
+    <button class="btn btn-link" type="button" (click)="startApp(app)" *ngFor="let app of favouriteApps" placement="right"
+      [ngbTooltip]="app.title">
+      <img [src]="app.iconPath" [alt]=app.title class="app-icon img-thumbnail" />
+    </button>
+  </div>
+  <button type="button" class="btn btn-link" [class.active]="showSettings" (click)="toggleSettings()">
+    <i class="btn-lg pointer fas fa-cog" ></i>
+  </button>
+
+</nav>
+<app-list-of-apps></app-list-of-apps>
+<app-settings></app-settings>

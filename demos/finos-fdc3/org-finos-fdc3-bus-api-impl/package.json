@@ -1,0 +1,39 @@
+{
+  "name": "com-glue42-finos-fdc3-api-impl",
+  "version": "1.0.10",
+  "description": "",
+  "main": "./dist/index.node.js",
+  "browser": "./dist/index.web.js",
+  "publishConfig": {
+    "registry": "https://repo.tick42.com/api/npm/tick42-npm-local/"
+  },
+  "scripts": {
+    "build": "npm run tslint && tsc && webpack --config webpack.config.js",
+    "start": "npm run build && node ./dist/index.js",
+    "tslint": "tslint ./src/**/*.ts",
+    "test": "mocha -r ts-node/register ./src/**/*.spec.ts",
+    "prepare": "node ./build-scripts/copyTypings.js",
+    "prepublishOnly": "npm run build"
+  },
+  "author": "Tick42",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "callback-registry": "^2.4.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.6",
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4",
+    "ts-node": "^8.1.0",
+    "tslint": "^5.14.0",
+    "typescript": "^3.1.1",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.1.2"
+  },
+  "files": [
+    "dist",
+    "index.d.ts"
+  ],
+  "types": "index.d.ts"
+}

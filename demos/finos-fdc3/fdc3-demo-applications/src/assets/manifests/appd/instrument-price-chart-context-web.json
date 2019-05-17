@@ -1,0 +1,24 @@
+{
+  "appId": "instrument-price-chart-context-web",
+  "name": "instrument-price-chart-context-web",
+  "version": "1.0.0",
+  "title": "Instrument Price Chart Browser",
+  "tooltip": "Instrument Price Chart Browser",
+  "description": "Instrument Price Chart Browser",
+  "images": [],
+  "publisher": "Glue42",
+  "icons": [
+    {
+      "icon": "../resources/icons/browser.svg"
+    }
+  ],
+  "customConfig": [
+    {
+	  "name": "showInToolbar",
+	  "value": "true"
+	}
+  ],
+  "intents": [],
+  "manifestType": "org.finos.fdc3.demo",
+  "manifest": "{\"type\":\"browser\",\"url\":\"http://localhost:4200/instrument-price-chart\"}"
+}

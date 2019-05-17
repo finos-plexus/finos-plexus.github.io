@@ -1,0 +1,109 @@
+<!-- Copyright © 2014-2019 Tick42 OOD
+SPDX-License-Identifier: Apache-2.0
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License. -->
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Glue42 FINOS FDC3 AppD demo logs</title>
+  <link rel="stylesheet" href="styles/bootstrap.min.css">
+  <style>
+    #logs-container {
+      max-height: calc(100vh - 85px);
+      overflow: auto;
+    }
+
+    #logs-container .border-left {
+      border-left-width: 4px !important;
+    }
+
+    ::-webkit-scrollbar-track {
+      border-radius: 10px;
+      background-color: #222222;
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+      background-color: #222222;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background-color: #444444;
+    }
+  </style>
+  <script>
+    window.onload = function () {
+      let isAlertVisible = true;
+
+      const hideAlert = () => {
+        if (isAlertVisible) {
+          document.getElementById('no-logs-alert').style.display = 'none';
+          isAlertVisible = false;
+        }
+      };
+
+      const appendLog = (log) => {
+        const containerDiv = document.createElement('div');
+        const styledDiv = document.createElement('div');
+        switch (log[1].toUpperCase()) {
+          case 'WARNING':
+            styledDiv.className = 'mb-2 p-3 border-left bg-dark border-warning';
+            break;
+          case 'ERROR':
+            styledDiv.className = 'mb-2 p-3 border-left bg-dark border-danger';
+            break;
+          default:
+            styledDiv.className = 'mb-2 p-3 border-left bg-dark border-info';
+            break;
+        }
+        const typeSpan = document.createElement('span');
+        typeSpan.innerHTML = `[${getTime()}] ${log[1].toUpperCase()} |`;
+        typeSpan.className = 'mr-1';
+        const originSpan = document.createElement('span');
+        originSpan.innerHTML = `${log[2]} |`;
+        originSpan.className = 'mr-1';
+        const messageSpan = document.createElement('span');
+        messageSpan.innerHTML = `${log[0]}`;
+
+        styledDiv.append(typeSpan);
+        styledDiv.append(originSpan);
+        styledDiv.append(messageSpan);
+        containerDiv.append(styledDiv);
+        document.getElementById('logs-container').prepend(containerDiv);
+      };
+
+      const getTime = () => {
+        const date = new Date();
+        const hours = date.getHours() < 10 ? `0${date.getHours()}` : `${date.getHours()}`;
+        const minutes = date.getMinutes() < 10 ? `0${date.getMinutes()}` : `${date.getMinutes()}`;
+        const seconds = date.getSeconds() < 10 ? `0${date.getSeconds()}` : `${date.getSeconds()}`;
+        return `${hours}:${minutes}:${seconds}`;
+      };
+
+      window.logStream.subscribe((log) => {
+        if (log.length === 3) {
+          hideAlert();
+          appendLog(log);
+        }
+      });
+    }
+  </script>
+</head>
+<body>
+  <div class="container-fluid">
+    <h2 class="mt-3">Logs</h2>
+    <div class="alert alert-dismissible alert-info mt-3" id="no-logs-alert">There are no logs available</div>
+    <div class="mt-3" id="logs-container"></div>
+  </div>
+</body>
+</html>

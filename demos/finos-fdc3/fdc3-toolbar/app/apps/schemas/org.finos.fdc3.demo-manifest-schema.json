@@ -1,0 +1,33 @@
+{
+  "id": "/OrgFinosFdc3Demo",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "OrgFinosFdc3Demo",
+  "oneOf": [
+    { "$ref": "#/definitions/BrowserDetails" },
+    { "$ref": "#/definitions/ExeDetails" }
+  ],
+  "definitions": {
+    "BrowserDetails": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "browser" },
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": ["type", "url"],
+      "additionalProperties": true
+    },
+    "ExeDetails": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "exe" },
+        "exePath": {
+          "type": "string"
+        }
+      },
+      "required": ["type", "exePath"],
+      "additionalProperties": true
+    }
+  }
+}

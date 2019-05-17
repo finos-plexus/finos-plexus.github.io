@@ -1,0 +1,22 @@
+{
+  "id": "/OrgFinosFdc3DemoHost",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "OrgFinosFdc3DemoHost",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string"
+    },
+    "hostType": {
+      "type": "string"
+    },
+    "hostName": {
+      "type": "string"
+    },
+    "hostManifest": {
+      "$ref": "/GlueDesktopApplicationSchema"
+    }
+  },
+  "required": ["type", "hostType", "hostName", "hostManifest"],
+  "additionalProperties": true
+}
