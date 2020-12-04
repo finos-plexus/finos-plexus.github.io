@@ -1,4 +1,5 @@
 # FINOS Plexus
+[![FINOS - Archived](https://cdn.jsdelivr.net/gh/finos/contrib-toolbox@master/images/badge-archived.svg)](https://finosfoundation.atlassian.net/wiki/display/FINOS/Archived)
 
 ## Contributing
 
